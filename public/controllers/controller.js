@@ -2,6 +2,8 @@ var myApp = angular.module('myApp', []);
 myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     console.log("Hello World from controller");
 
+    $http.get('/contactlist');
+
     person1={
       name: "Tim",
       email: "tim@gmail.com",
@@ -19,5 +21,7 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     }
 
     var contactlist= [person1, person2, person3];
+    $scope.contactlist = contactlist;
+    //$scope allows use to ues contactlist in HTML
 
 }]);
