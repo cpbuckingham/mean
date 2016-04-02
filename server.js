@@ -2,8 +2,10 @@ var express = require ('express');
 var app = express();
 var mongojs = require ('mongojs');
 var db = mongojs('contactlist', ['contactlist']);
+var bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + "/public"));
+app.use(bodyParser.json());
 
 app.get('/contactlist', function(req, res){
   console.log("Recieved the GET request")
@@ -12,6 +14,10 @@ app.get('/contactlist', function(req, res){
       res.json(docs);
     });
   //respond to the get request by sending back the data
+});
+
+app.post('/contactlist', function(req, res){
+  console.log(req.body);
 });
 
 app.listen(3000)

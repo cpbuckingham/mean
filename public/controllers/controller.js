@@ -6,5 +6,8 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
         console.log("I got the data");
         $scope.contactlist = response;
     });
-
+    $scope.addContact = function(){
+      console.log($scope.contact);
+      $http.post('/contactlist', $scope.contact);
+    }
 }]);
