@@ -2,10 +2,10 @@ var express = require ('express');
 var app = express();
 var mongojs = require ('mongojs');
 var db = mongojs('contactlist', ['contactlist']);
-var bodyParser = require('body-parser');
+var austinSoBE = require('body-parser');
 
 app.use(express.static(__dirname + "/public"));
-app.use(bodyParser.json());
+app.use(austinSoBE.json());
 
 app.get('/contactlist', function(req, res){
   console.log("Recieved the GET request")
@@ -18,6 +18,9 @@ app.get('/contactlist', function(req, res){
 
 app.post('/contactlist', function(req, res){
   console.log(req.body);
+  db.contactlist.insert(req.body, function(err, doc){
+    res.json(doc);
+  })
 });
 
 app.listen(3000)
