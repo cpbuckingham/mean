@@ -19,4 +19,12 @@ var refresh = function(){
         refresh();
       });
     };
+
+    $scope.remove = function(id){
+      console.log(id);
+      $http.delete('/contactlist/'+id).success(function(response){
+        refresh();
+
+      });
+    };
 }]);
