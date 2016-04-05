@@ -24,7 +24,21 @@ var refresh = function(){
       console.log(id);
       $http.delete('/contactlist/'+id).success(function(response){
         refresh();
+      });
+    };
+
+    $scope.edit = function(id){
+      console.log(id);
+      $http.get('/contactlist/' + id).success(function(response){
+          $scope.contact = response;
 
       });
+    };
+    $scope.update = function(){
+      console.log(id);
+      $http.put('/contactlist/' + $scope.contact._id, $scope.contact.id).success(function(response){
+          $scope.contact = response;
+
+  });
     };
 }]);

@@ -31,5 +31,19 @@ app.delete('/contactlist/:id', function(req, res){
   });
 });
 
+app.get('/contactlist/:id', function(req, res){
+  var id = req.params.id;
+  db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function(err, doc){
+    res.json(doc);
+  });
+});
+
+app.put('/contactlist/:id', function(req, res){
+  var id = req.params.id;
+  db.contactlist.update({_id: mongojs.ObjectId(id)}, function(err, doc){
+    res.json(doc);
+  });
+});
+
 app.listen(3000)
 console.log("Running ... then you better go catch it!");
