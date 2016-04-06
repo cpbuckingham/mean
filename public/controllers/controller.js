@@ -35,10 +35,10 @@ var refresh = function(){
       });
     };
     $scope.update = function(){
-      console.log(id);
-      $http.put('/contactlist/' + $scope.contact._id, $scope.contact.id).success(function(response){
-          $scope.contact = response;
-
-  });
+      console.log($scope.contact._id);
+      $http.put('/contactlist/' + $scope.contact._id, $scope.contact).success(function(response){
+          refresh();
+      });
     };
+
 }]);

@@ -40,9 +40,12 @@ app.get('/contactlist/:id', function(req, res){
 
 app.put('/contactlist/:id', function(req, res){
   var id = req.params.id;
-  db.contactlist.update({_id: mongojs.ObjectId(id)}, function(err, doc){
+  console.log(req.body.name);
+  db.contactlist.findAndModify({query: {_id: mongojs.ObjectId(id)},
+  update: {$set: {name: req.body.name, email: req.body.email, numbers: req.body.numbers}},
+  new: true}, function(err, doc){
     res.json(doc);
-  });
+});
 });
 
 app.listen(3000)
